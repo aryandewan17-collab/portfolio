@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Zap } from 'lucide-react';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,17 +31,18 @@ const Header = () => {
   ];
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm' : 'bg-transparent'
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      isScrolled ? 'bg-black/80 backdrop-blur-xl border-b border-yellow-500/20 golden-glow' : 'bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div 
             onClick={() => scrollToSection('home')}
-            className="font-bold text-xl cursor-pointer hover:text-teal-600 transition-colors"
+            className="flex items-center space-x-2 font-bold text-xl cursor-pointer hover:text-yellow-400 transition-all duration-300 golden-text-glow"
           >
-            Aryan Dewan
+            <Zap className="h-6 w-6 text-yellow-400" />
+            <span className="gradient-text">Aryan Dewan</span>
           </div>
 
           {/* Desktop Navigation */}
@@ -50,9 +51,10 @@ const Header = () => {
               <button
                 key={item.href}
                 onClick={() => scrollToSection(item.href)}
-                className="text-gray-700 hover:text-teal-600 transition-colors font-medium"
+                className="text-gray-300 hover:text-yellow-400 transition-all duration-300 font-medium relative group"
               >
                 {item.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
               </button>
             ))}
           </nav>
@@ -61,7 +63,7 @@ const Header = () => {
           <div className="hidden md:block">
             <Button 
               onClick={() => scrollToSection('contact')}
-              className="bg-teal-600 hover:bg-teal-700 text-white"
+              className="bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black font-semibold px-6 golden-glow hover:pulse-gold transition-all duration-300"
             >
               Let's Connect
             </Button>
@@ -70,7 +72,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2"
+            className="md:hidden p-2 text-yellow-400 hover:text-yellow-300 transition-colors"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -78,20 +80,20 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md shadow-lg">
+          <div className="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-xl border-b border-yellow-500/20 golden-glow">
             <nav className="flex flex-col space-y-4 p-4">
               {navigationItems.map((item) => (
                 <button
                   key={item.href}
                   onClick={() => scrollToSection(item.href)}
-                  className="text-gray-700 hover:text-teal-600 transition-colors font-medium text-left"
+                  className="text-gray-300 hover:text-yellow-400 transition-colors font-medium text-left py-2"
                 >
                   {item.label}
                 </button>
               ))}
               <Button 
                 onClick={() => scrollToSection('contact')}
-                className="bg-teal-600 hover:bg-teal-700 text-white mt-4"
+                className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-semibold mt-4 golden-glow"
               >
                 Let's Connect
               </Button>
